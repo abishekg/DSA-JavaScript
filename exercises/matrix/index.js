@@ -15,6 +15,70 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
-function matrix(n) {}
+function matrix(n) {
+	const results = [];
+	for (let i = 0; i < n; i++) results.push([]);
+
+	let counter = 1;
+	let startRow = 0,
+		startColumn = 0,
+		endRow = n - 1,
+		endColumn = n - 1;
+
+	while (startColumn <= endColumn && startRow <= endRow) {
+        for(let i=startColumn;i<=endColumn;i++){
+            results[startRow][i]=counter++;
+        }
+        startRow++;
+        for(let i=startRow;i<=endRow;i++){
+            results[i][endColumn]=counter++;
+        }
+        endColumn--;
+        for(let i=endColumn;i>=startColumn;i--){
+            results[endRow][i]=counter++;
+        }
+        endRow--;
+        for(let i=endRow;i>=startRow;i--){
+            results[i][startColumn]=counter++;
+        }
+        startColumn++;
+    }
+    return results;
+}
 
 module.exports = matrix;
+
+// const results = [];
+// for (let i = 0; i < n; i++) {
+//     results.push([]);
+// }
+// let counter = 1;
+// let startColumn = 0,
+//     endColumn = n - 1,
+//     startRow = 0,
+//     endRow = n - 1;
+// while (startColumn <= endColumn && startRow <= endRow) {
+//     // TopRow
+//     for (let i = startColumn; i <= endColumn; i++) {
+//         results[startRow][i] = counter;
+//         counter++;
+//     }
+//     startRow++;
+
+//     // RightColumn
+//     for (let i = startRow; i <= endRow; i++) {
+//         results[i][endColumn] = counter++;
+//     }
+//     endColumn--;
+//     // BottomRow
+//     for (let i = endColumn; i >= startColumn; i--) {
+//         results[endRow][i] = counter++;
+//     }
+//     endRow--;
+//     // LeftColumn
+//     for (let i = endRow; i >= startRow; i--) {
+//         results[i][startColumn] = counter++;
+//     }
+//     startColumn++;
+// }
+// return results;
